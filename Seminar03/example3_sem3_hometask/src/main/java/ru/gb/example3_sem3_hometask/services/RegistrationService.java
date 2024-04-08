@@ -13,7 +13,13 @@ public class RegistrationService {
     @Autowired
     private DataProcessingService dataProcessingService;
 
-    //Поля UserService, NotificationService
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private NotificationService notificationService;
 
-    //Метод processRegistration
+    public void processRegistration(String name, int age, String email) {
+        dataProcessingService.addUserToList(userService.createUser(name,age,email));
+        notificationService.sendNotification("Пользователь добавлен!");
+    }
 }
